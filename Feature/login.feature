@@ -34,13 +34,21 @@ Given I access the homepage
 When I fill "<email>"  and "<password>"
 Then I should be successfully logged into the homepage
 And I should see "<name>" at the top left hand corner
-
 Examples:
 
 		| email                            | password   | name |
 		|jon.everett@opencastsoftware.com  | Br!tann!a01| Jon  |
 		|levis.brisibe@opencastsoftware.com| Thompson01 | Levis|
 
+@NegativeTests
+Scenario Outline: Login with Incorrect Details
+Given I access the homepage
+When I fill "<email>"  and "<password>"
+Then I should see error "<Message>" displayed
+Examples:
 
-
-
+    | email                            | password   | Message                     |   
+		|jon.everett@opencastsoftware.com  |            | Password required           |
+		|levis.brisibe@opencastsoftware.com| 12345      | E-mail or Password incorrect|                
+    |                                  | Thompson01 | Email required              |
+    |levisbrisibe@yahoo.com            | Br!tann!a01| E-mail or Password incorrect|                                                              |

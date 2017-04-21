@@ -39,7 +39,6 @@ public class LoginSteps {
 	    String text = driver.findElement(By.cssSelector(".navbar-left")).getText();
 	    System.out.println(text);
 	    Assert.assertTrue(text.contains(arg1));
-	    
 	}
 	
 	@When("^I fill \"([^\"]*)\"  and \"([^\"]*)\"$")
@@ -50,11 +49,16 @@ public class LoginSteps {
 	
 	}
 	
+	@Then("^I should see error \"([^\"]*)\" displayed$")
+	public void i_should_see_error_displayed(String arg1) throws Throwable {
+		//String text = driver.findElement(By.cssSelector(".help-block")).getText();
+		String text = driver.findElement(By.cssSelector("span[id$=error_0]")).getText();
+		System.out.println(text);
+	    Assert.assertTrue(text.contains(arg1));
+	}
+	
 	@After
 	public void after() {
 		driver.quit();
 	}
-
-
-
 }
